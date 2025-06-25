@@ -1,1 +1,94 @@
-vsCodeで編集
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>サイト制作依頼フォーム</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align: center;">作ってほしいサイト 大募集！</h2>
+
+  <form id="contact-form">
+    <label for="name">お名前</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="email">メールアドレス</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="message">作ってほしいサイトの内容</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">送信する</button>
+  </form>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("vUI5JALV1NiyAa_Cu"); // ← EmailJSの公開キーを入れる
+    })();
+
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const form = this;
+
+      // 管理者に送信
+      emailjs.sendForm("vUI5JALV1NiyAa_Cu", "template_xn1fa3d", form)
+        .then(function () {
+          console.log("管理者に送信成功");
+        }, function (error) {
+          console.error("管理者送信失敗", error);
+        });
+
+      // 依頼者に自動返信
+      emailjs.sendForm("vUI5JALV1NiyAa_Cu", "template_jsnfdfi", form)
+        .then(function () {
+          alert("送信が完了しました！確認メールを送信しました。");
+          form.reset();
+        }, function (error) {
+          alert("エラーが発生しました。もう一度お試しください。");
+          console.error("依頼者送信失敗", error);
+        });
+    });
+  </script>
+</body>
+</html>
+
