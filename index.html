@@ -2,85 +2,81 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>YouTubeプレイヤーサイト</title>
+  <title>動画リンク再生サイト</title>
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
-      background-color: #f9f9f9;
+      background-color: #f0f0f0;
       padding: 30px;
-    }
-    h1 {
-      color: #333;
-    }
-    .video-container {
-      position: relative;
-      width: 80%;
-      max-width: 800px;
-      margin: auto;
-      aspect-ratio: 16 / 9;
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
     input {
       width: 60%;
       padding: 10px;
       font-size: 16px;
-      margin-top: 20px;
+      margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
     button {
       padding: 10px 15px;
       font-size: 16px;
-      margin-left: 10px;
-      background-color: #e74c3c;
+      background-color: #3498db;
       color: white;
       border: none;
       border-radius: 6px;
       cursor: pointer;
     }
     button:hover {
-      background-color: #c0392b;
+      background-color: #2980b9;
+    }
+    .player {
+      margin-top: 30px;
+      width: 80%;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    iframe, video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
 
-  <h1>YouTube動画を再生しよう！</h1>
+  <h1>動画リンクを貼って再生！</h1>
 
-  <div>
-    <input type="text" id="youtube-url" placeholder="YouTubeのURLを入力">
-    <button onclick="loadVideo()">再生</button>
-  </div>
+  <input type="text" id="video-url" placeholder="YouTubeまたはMP4のURLを入力">
+  <button onclick="playVideo()">再生</button>
 
-  <div class="video-container" id="video-container" style="margin-top: 30px;">
-    <!-- 埋め込みプレイヤーがここに表示される -->
-  </div>
+  <div class="player" id="player"></div>
 
   <script>
-    function extractVideoID(url) {
-      const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
-      const match = url.match(regex);
-      return match ? match[1] : null;
-    }
+    function playVideo() {
+      const url = document.getElementById("video-url").value.trim();
+      const player = document.getElementById("player");
+      player.innerHTML = "";
 
-    function loadVideo() {
-      const url = document.getElementById("youtube-url").value;
-      const videoId = extractVideoID(url);
-      const container = document.getElementById("video-container");
-
-      if (videoId) {
+      // YouTubeリンク判定
+      const ytRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
+      const ytMatch = url.match(ytRegex);
+      if (ytMatch) {
+        const videoId = ytMatch[1];
         const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-        container.innerHTML = `<iframe src="${embedUrl}" allowfullscreen></iframe>`;
-      } else {
-        alert("正しいYouTubeのURLを入力してください。");
+        player.innerHTML = `<iframe src="${embedUrl}" frameborder="0" allowfullscreen></iframe>`;
+        return;
       }
+
+      // MP4リンク判定
+      if (url.endsWith(".mp4")) {
+        player.innerHTML = `<video src="${url}" controls></video>`;
+        return;
+      }
+
+      alert("YouTubeリンクまたはMP4リンクを入力してください。");
     }
   </script>
 
