@@ -2,144 +2,66 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>学校のタブレットで使える情報系サイト集</title>
+  <title>学校フィルター回避サイト β版情報</title>
   <style>
     body {
-      font-family: 'Yu Gothic', 'Meiryo', sans-serif;
-      background-color: #fefefe;
-      color: #333;
-      padding: 20px;
-      max-width: 960px;
-      margin: auto;
+      font-family: 'Meiryo', sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
 
     .led-banner {
-      overflow: hidden;
-      background: #000;
+      background-color: #000;
       color: #0f0;
-      white-space: nowrap;
       font-family: 'Courier New', monospace;
-      font-size: 1rem;
-      padding: 10px;
-      text-shadow: 0 0 4px #0f0;
-      animation: scrollText 20s linear infinite;
+      font-size: 1.2rem;
+      padding: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-shadow: 0 0 5px #0f0;
+      animation: scrollBanner 15s linear infinite;
     }
 
-    @keyframes scrollText {
-      0% { transform: translateX(100%); }
+    @keyframes scrollBanner {
+      0%   { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
 
+    .content {
+      padding: 40px 20px;
+    }
+
     h1 {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .notice, .warning {
-      border-radius: 8px;
-      padding: 15px;
-      margin: 20px 0;
-    }
-
-    .notice {
-      background: #e0f7fa;
-      border: 2px solid #00acc1;
-    }
-
-    .warning {
-      background: #ffebee;
-      border: 2px solid #e53935;
-      color: #c62828;
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 20px;
+      font-size: 2rem;
       margin-bottom: 20px;
-      transition: transform 0.2s;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .card h2 {
-      margin-bottom: 10px;
-    }
-
-    .card a {
-      color: #0077cc;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 0.9em;
-      color: #666;
+    .info {
+      background-color: #e3f2fd;
+      border-left: 6px solid #1976d2;
+      padding: 20px;
+      border-radius: 8px;
+      display: inline-block;
+      font-size: 1.1rem;
     }
   </style>
 </head>
 <body>
 
   <div class="led-banner">
-    🚨 DSチーム：対応時間 平日6:00〜8:16／15:30〜21:00 ｜一部端末で閲覧できない問題を修正中です 🚨
+    🚧 β板実装予定：7/1「学校フィルター回避サイト」公開予定 🚧
   </div>
 
-  <h1>学校のタブレットで使える 情報系サイトまとめ</h1>
-
-  <div class="notice">
-    ✅ Chromebook・iPad・Windows・Android 対応！<br>
-    学校のフィルターを通過できる便利なサイト集
+  <div class="content">
+    <h1>学校フィルター回避サイト β情報ページ</h1>
+    <div class="info">
+      このサイトは一部の学校タブレット・PCでブロックされるサイトへのアクセスを支援する情報系βツールを提供予定です。<br><br>
+      🔓 実装予定日：<strong>2025年7月1日</strong><br>
+      🚸 利用はあくまで「自己責任」でお願いします。
+    </div>
   </div>
-
-  <div class="warning">
-    ※ 学習目的でのみ使用してください。<br>
-    クラス内でバレずに静かに活用しましょう。
-  </div>
-
-  <!-- カード形式のサイト紹介 -->
-  <div class="card">
-    <h2>🔎 Wikipedia</h2>
-    <p>調べ学習に最適なオンライン百科事典</p>
-    <a href="https://ja.wikipedia.org/" target="_blank">https://ja.wikipedia.org/</a>
-  </div>
-
-  <div class="card">
-    <h2>💻 Progate</h2>
-    <p>初心者向けプログラミング学習サイト（HTML, Pythonなど）</p>
-    <a href="https://prog-8.com/" target="_blank">https://prog-8.com/</a>
-  </div>
-
-  <div class="card">
-    <h2>🎓 N予備校</h2>
-    <p>プログラミングや数学の動画講座が無料で見られる</p>
-    <a href="https://www.nnn.ed.nico/" target="_blank">https://www.nnn.ed.nico/</a>
-  </div>
-
-  <div class="card">
-    <h2>📘 Qiita</h2>
-    <p>IT・開発者向けの技術共有プラットフォーム</p>
-    <a href="https://qiita.com/" target="_blank">https://qiita.com/</a>
-  </div>
-
-  <div class="card">
-    <h2>📚 Gakken Web 学習</h2>
-    <p>学研が提供するWeb教材（中学生・高校生向け）</p>
-    <a href="https://gakken.jp/" target="_blank">https://gakken.jp/</a>
-  </div>
-
-  <footer>
-    🛠️ サイト制作：ADSチーム（Ver. 1.0）｜ 利用時間：平日6:00〜8:16／15:30〜21:00（休日除く）
-  </footer>
 
 </body>
 </html>
