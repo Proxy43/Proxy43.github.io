@@ -40,6 +40,32 @@
       font-weight: bold;
       color: #1a237e;
     }
+
+    .scroll-banner {
+      background-color: #b71c1c;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      padding: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .scroll-text {
+      position: absolute;
+      white-space: nowrap;
+      animation: scrollText 25s linear infinite;
+    }
+
+    @keyframes scrollText {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
   </style>
 </head>
 <body>
@@ -47,6 +73,13 @@
   <header>
     <h1>ADSチーム対応状況</h1>
   </header>
+
+  <!-- スクロールバナー -->
+  <div class="scroll-banner">
+    <div class="scroll-text">
+      📢 お客様にご案内します。現在、電車の遅延によりチームメンバーの帰宅が遅れており、本日のサイト安全点検作業は延長となりました。不具合が発生している箇所について、誠に申し訳ございません。2025年7月10日にお問い合わせ機能を追加し、その日を新たな点検日といたします。
+    </div>
+  </div>
 
   <div class="status-box">
     <p><span class="status-label">📅 日付：</span>2025年6月26日（木）</p>
