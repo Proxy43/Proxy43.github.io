@@ -2,58 +2,16 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>ADSチーム対応状況</title>
-  <style>
-    body {
-      font-family: 'Meiryo', sans-serif;
-      background-color: #f4f6f8;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-
-    header {
-      background-color: #263238;
-      color: #fff;
-      padding: 20px 0;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
-
-    .status-box {
-      margin: 40px auto;
-      padding: 20px;
-      width: 90%;
-      max-width: 700px;
-      background-color: #e3f2fd;
-      border-left: 6px solid #1e88e5;
-      border-radius: 8px;
-      text-align: left;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .status-label {
-      font-weight: bold;
-      color: #1a237e;
-    }
-  </style>
+  <title>お問い合わせフォーム</title>
 </head>
 <body>
-
-  <header>
-    <h1>ADSチーム対応状況</h1>
-  </header>
-
-  <div class="status-box">
-    <p><span class="status-label">📅 日付：</span>2025年6月26日（木）</p>
-    <p><span class="status-label">🕐 今朝の状況：</span>主担当者の電車遅延により、対応を一時休止しておりました。</p>
-    <p><span class="status-label">🔄 現在の状況：</span>ADSチームは対応を再開し、作業を進行中です。</p>
-    <p><span class="status-label">👨‍💻 チームオーナーの作業：</span>ソースコードの修正・更新を現在進めています。</p>
-  </div>
-
+  <h1>お問い合わせ</h1>
+  <form action="send.php" method="post">
+    <label>お名前：<input type="text" name="name" required></label><br><br>
+    <label>メッセージ：<br>
+      <textarea name="message" rows="5" cols="30" required></textarea>
+    </label><br><br>
+    <input type="submit" value="送信">
+  </form>
 </body>
 </html>
