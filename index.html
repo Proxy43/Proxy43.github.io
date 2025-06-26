@@ -6,10 +6,11 @@
   <style>
     body {
       font-family: 'Meiryo', sans-serif;
-      background-color: #f4f6f8;
+      background-color: #222;
       margin: 0;
       padding: 0;
       text-align: center;
+      color: #fff;
     }
 
     header {
@@ -23,41 +24,34 @@
       font-size: 1.8rem;
     }
 
-    .status-board {
-      background-color: #212121;
-      color: #fff;
-      font-family: 'Meiryo', sans-serif;
+    .status-box {
+      margin: 40px auto;
       padding: 20px;
-      margin: 30px auto;
       width: 90%;
-      max-width: 800px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      max-width: 700px;
+      background-color: #424242;
+      border-left: 6px solid #1e88e5;
+      border-radius: 8px;
       text-align: left;
-    }
-
-    .status-board h2 {
-      border-bottom: 2px solid #fff;
-      padding-bottom: 10px;
-      margin-bottom: 15px;
-      font-size: 1.5rem;
-    }
-
-    .status-board p {
       font-size: 1.1rem;
-      line-height: 1.8;
-      margin: 10px 0;
+      line-height: 1.6;
+    }
+
+    .status-label {
+      font-weight: bold;
+      color: #90caf9;
     }
 
     .scroll-banner {
-      background-color: #b71c1c;
-      color: #fff;
+      background-color: #000;
+      color: #0f0;
       font-family: 'Courier New', monospace;
       font-size: 1rem;
       padding: 10px;
       white-space: nowrap;
       overflow: hidden;
       position: relative;
+      text-shadow: 0 0 5px #0f0;
     }
 
     .scroll-text {
@@ -79,60 +73,22 @@
 <body>
 
   <header>
-    <h1>ADSチーム対応状況掲示板</h1>
+    <h1>ADSチーム対応状況</h1>
   </header>
 
- <!-- スクロールバナー（謝罪） -->
-<div class="scroll-banner">
-  🚨 本日改めて謝罪申し上げます。本日午後18:49の時点で、告知なしにメンテナンスを実施していたことをお詫び申し上げます。申し訳ございませんでした。🚨
-</div>
+  <!-- スクロールLEDバナー -->
+  <div class="scroll-banner">
+    <div class="scroll-text">
+      📢 お客様にご案内します。現在、電車の遅延によりチームメンバーの帰宅が遅れており、本日のサイト安全点検作業は延長となりました。不具合が発生している箇所について、誠に申し訳ございません。2025年7月10日にお問い合わせ機能を追加し、その日を新たな点検日といたします。
+    </div>
+  </div>
 
-<style>
-  .scroll-banner {
-    background-color: #b71c1c;
-    color: #fff;
-    font-family: 'Courier New', monospace;
-    font-size: 1rem;
-    padding: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    position: relative;
-    text-shadow: 0 0 2px #000;
-  }
-
-  .scroll-banner::before {
-    content: attr(data-text);
-    position: absolute;
-    white-space: nowrap;
-    animation: scrollText 20s linear infinite;
-  }
-
-  @keyframes scrollText {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  .scroll-banner::before {
-    content: "🚨 本日改めて謝罪申し上げます。本日午後18:49の時点で、告知なしにメンテナンスを実施していたことをお詫び申し上げます。申し訳ございませんでした。🚨";
-    position: absolute;
-    left: 0;
-    top: 0;
-    animation: scrollText 25s linear infinite;
-  }
-</style>
-
-
-  <div class="status-board">
-    <h2>🚉 ご案内掲示板</h2>
-    <p>📅 <strong>日付：</strong>2025年6月26日（木）</p>
-    <p>🔄 <strong>現在の状況：</strong>ADSチームは通常通り作業を継続中です。</p>
-    <p>👨‍💻 <strong>チームオーナーの作業：</strong>ソースコードの保守・更新作業を行っています。</p>
-    <p>⚠️ <strong>お知らせ：</strong>電車の遅延によりチームメンバーの帰宅が遅れており、本日のサイト安全点検作業は延長となりました。</p>
-    <p>📌 <strong>今後の対応：</strong>2025年7月10日にお問い合わせ機能を追加し、その日を新たな点検日といたします。</p>
+  <div class="status-box">
+    <p><span class="status-label">📅 日付：</span>2025年6月26日（木）</p>
+    <p><span class="status-label">🔄 現在の状況：</span>ADSチームは通常通り作業を継続中です。</p>
+    <p><span class="status-label">👨‍💻 チームオーナーの作業：</span>ソースコードの保守・更新作業を行っています。</p>
+    <p><span class="status-label">⚠️ お知らせ：</span>現在、電車の遅延によりチームメンバーの帰宅が遅れており、本日のサイト安全点検作業は延長となりました。不具合が発生している箇所について、誠に申し訳ございません。</p>
+    <p><span class="status-label">📌 今後の対応：</span>2025年7月10日にお問い合わせ機能を追加し、その日を新たな点検日といたします。</p>
   </div>
 
 </body>
