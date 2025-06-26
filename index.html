@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>ADS チーム対応状況</title>
+  <title>ADSチーム対応状況</title>
   <style>
     body {
       font-family: 'Meiryo', sans-serif;
@@ -47,54 +47,11 @@
   <header>
     <h1>ADSチーム対応状況</h1>
   </header>
-<!-- スクロールバナー（謝罪） -->
-<div class="scroll-banner">
-  🚨 本日改めて謝罪申し上げます。本日午後18:49の時点で、告知なしにメンテナンスを実施していたことをお詫び申し上げます。申し訳ございませんでした。🚨
-</div>
-
-<style>
-  .scroll-banner {
-    background-color: #b71c1c;
-    color: #fff;
-    font-family: 'Courier New', monospace;
-    font-size: 1rem;
-    padding: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    position: relative;
-    text-shadow: 0 0 2px #000;
-  }
-
-  .scroll-banner::before {
-    content: attr(data-text);
-    position: absolute;
-    white-space: nowrap;
-    animation: scrollText 20s linear infinite;
-  }
-
-  @keyframes scrollText {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  .scroll-banner::before {
-    content: "🚨 本日改めて謝罪申し上げます。本日午後18:49の時点で、告知なしにメンテナンスを実施していたことをお詫び申し上げます。申し訳ございませんでした。🚨";
-    position: absolute;
-    left: 0;
-    top: 0;
-    animation: scrollText 25s linear infinite;
-  }
-</style>
 
   <div class="status-box">
     <p><span class="status-label">📅 日付：</span>2025年6月26日（木）</p>
-    <p><span class="status-label">🕐 今朝の状況：</span>主担当者の電車遅延により、対応を一時休止しておりました。</p>
-    <p><span class="status-label">🔄 現在の状況：</span>ADSチームは対応を再開し、作業を進行中です。</p>
-    <p><span class="status-label">👨‍💻 チームオーナーの作業：</span>ソースコードの修正・更新を現在進めています。</p>
+    <p><span class="status-label">🔄 現在の状況：</span>ADSチームは通常通り作業を継続中です。</p>
+    <p><span class="status-label">👨‍💻 チームオーナーの作業：</span>ソースコードの保守・更新作業を行っています。</p>
   </div>
 
 </body>
