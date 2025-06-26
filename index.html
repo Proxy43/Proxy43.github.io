@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>ADS お問い合わせフォーム</title>
+  <title>ADS お問い合わせ & 対応状況</title>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function() {
@@ -14,10 +14,10 @@
 
       emailjs.sendForm("service_yz4mo5b", "template_jsnfdfi", "#contact-form")
         .then(() => {
-          alert("お問い合わせ内容を送信しました。自動返信メールをご確認ください。");
+          alert("送信しました！自動返信メールをご確認ください。");
           document.getElementById("contact-form").reset();
         }, (error) => {
-          alert("送信に失敗しました: " + error.text);
+          alert("送信エラー：" + error.text);
         });
     }
   </script>
@@ -25,17 +25,34 @@
     body {
       font-family: 'Meiryo', sans-serif;
       background-color: #f0f4f8;
-      padding: 40px;
+      margin: 0;
+      padding: 0;
       text-align: center;
+    }
+
+    header {
+      background-color: #263238;
+      color: #fff;
+      padding: 20px 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    .container {
+      padding: 30px 20px;
     }
 
     form {
       background-color: #fff;
-      padding: 30px;
+      padding: 25px;
       border-radius: 10px;
       max-width: 500px;
-      margin: auto;
+      margin: 30px auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
     }
 
     input, textarea {
@@ -57,21 +74,53 @@
     input[type="submit"]:hover {
       background-color: #1565c0;
     }
+
+    .status-box {
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 700px;
+      background-color: #e3f2fd;
+      border-left: 6px solid #1e88e5;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .status-label {
+      font-weight: bold;
+      color: #1a237e;
+    }
   </style>
 </head>
 <body>
-  <h1>ADS お問い合わせフォーム</h1>
-  <form id="contact-form" onsubmit="sendMail(event)">
-    <label>お名前</label>
-    <input type="text" name="user_name" required />
 
-    <label>メールアドレス</label>
-    <input type="email" name="user_email" required />
+  <header>
+    <h1>ADS チーム - 対応状況 & お問い合わせ</h1>
+  </header>
 
-    <label>お問い合わせ内容</label>
-    <textarea name="message" rows="5" required></textarea>
+  <div class="container">
 
-    <input type="submit" value="送信" />
-  </form>
+    <div class="status-box">
+      <p><span class="status-label">📅 日付：</span>2025年6月26日（木）</p>
+      <p><span class="status-label">🟢 現在の状況：</span>全システム正常稼働中・遅延は解消済み</p>
+      <p><span class="status-label">👨‍💻 チーム作業状況：</span>ソースコード最終調整中・近日公開予定</p>
+    </div>
+
+    <form id="contact-form" onsubmit="sendMail(event)">
+      <h2>お問い合わせフォーム</h2>
+      <label>お名前</label>
+      <input type="text" name="user_name" required />
+
+      <label>メールアドレス</label>
+      <input type="email" name="user_email" required />
+
+      <label>お問い合わせ内容</label>
+      <textarea name="message" rows="5" required></textarea>
+
+      <input type="submit" value="送信する" />
+    </form>
+  </div>
+
 </body>
 </html>
