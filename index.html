@@ -2,57 +2,76 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>ADSチーム対応状況</title>
+  <title>ADS お問い合わせフォーム</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("vUI5JALV1NiyAa_Cu"); // 公開キー
+    })();
+
+    function sendMail(event) {
+      event.preventDefault();
+
+      emailjs.sendForm("service_yz4mo5b", "template_jsnfdfi", "#contact-form")
+        .then(() => {
+          alert("お問い合わせ内容を送信しました。自動返信メールをご確認ください。");
+          document.getElementById("contact-form").reset();
+        }, (error) => {
+          alert("送信に失敗しました: " + error.text);
+        });
+    }
+  </script>
   <style>
     body {
       font-family: 'Meiryo', sans-serif;
-      background-color: #f4f6f8;
-      margin: 0;
-      padding: 0;
+      background-color: #f0f4f8;
+      padding: 40px;
       text-align: center;
     }
 
-    header {
-      background-color: #263238;
-      color: #fff;
-      padding: 20px 0;
+    form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-    h1 {
-      margin: 0;
-      font-size: 1.8rem;
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
-    .status-box {
-      margin: 40px auto;
-      padding: 20px;
-      width: 90%;
-      max-width: 700px;
-      background-color: #e3f2fd;
-      border-left: 6px solid #1e88e5;
-      border-radius: 8px;
-      text-align: left;
-      font-size: 1.1rem;
-      line-height: 1.6;
+    input[type="submit"] {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      cursor: pointer;
     }
 
-    .status-label {
-      font-weight: bold;
-      color: #1a237e;
+    input[type="submit"]:hover {
+      background-color: #1565c0;
     }
   </style>
 </head>
 <body>
+  <h1>ADS お問い合わせフォーム</h1>
+  <form id="contact-form" onsubmit="sendMail(event)">
+    <label>お名前</label>
+    <input type="text" name="user_name" required />
 
-  <header>
-    <h1>ADSチーム対応状況</h1>
-  </header>
+    <label>メールアドレス</label>
+    <input type="email" name="user_email" required />
 
-  <div class="status-box">
-    <p><span class="status-label">📅 日付：</span>2025年6月26日（木）</p>
-    <p><span class="status-label">🔄 現在の状況：</span>ADSチームは通常通り作業を行っております。</p>
-    <p><span class="status-label">👨‍💻 チームオーナーの作業：</span>ソースコードの更新作業を継続中です。</p>
-  </div>
+    <label>お問い合わせ内容</label>
+    <textarea name="message" rows="5" required></textarea>
 
+    <input type="submit" value="送信" />
+  </form>
 </body>
 </html>
