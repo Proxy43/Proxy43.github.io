@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>ADSチーム対応状況</title>
+  <title>ADS チーム対応状況</title>
   <style>
     body {
       font-family: 'Meiryo', sans-serif;
@@ -40,6 +40,36 @@
       font-weight: bold;
       color: #1a237e;
     }
+
+    .scroll-banner {
+      background-color: #b71c1c;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      padding: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      text-shadow: 0 0 2px #000;
+    }
+
+    .scroll-banner::before {
+      content: "\1F6A8 本日改めて謝罪申し上げます。本日午後18:49の時点で、告知なしにメンテナンスを実施していたことをお詫び申し上げます。申し訳ございませんでした。\1F6A8";
+      position: absolute;
+      left: 0;
+      top: 0;
+      white-space: nowrap;
+      animation: scrollText 25s linear infinite;
+    }
+
+    @keyframes scrollText {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
   </style>
 </head>
 <body>
@@ -47,6 +77,9 @@
   <header>
     <h1>ADSチーム対応状況</h1>
   </header>
+
+  <!-- スクロールバナー（謝罪） -->
+  <div class="scroll-banner"></div>
 
   <div class="status-box">
     <p><span class="status-label">📅 日付：</span>2025年6月26日（木）</p>
@@ -56,3 +89,4 @@
 
 </body>
 </html>
+
