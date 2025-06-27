@@ -2,44 +2,27 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>ADSチーム対応状況</title>
+  <title>名鉄人身事故速報 - ADSチーム対応状況</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Meiryo', sans-serif;
-      background-color: #222;
+      background-color: #111;
       margin: 0;
       padding: 0;
-      text-align: center;
       color: #fff;
     }
 
     header {
-      background-color: #263238;
+      background-color: #b71c1c;
+      padding: 15px 0;
+      text-align: center;
       color: #fff;
-      padding: 20px 0;
     }
 
     h1 {
       margin: 0;
-      font-size: 1.8rem;
-    }
-
-    .status-box {
-      margin: 40px auto;
-      padding: 20px;
-      width: 90%;
-      max-width: 700px;
-      background-color: #424242;
-      border-left: 6px solid #1e88e5;
-      border-radius: 8px;
-      text-align: left;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .status-label {
-      font-weight: bold;
-      color: #90caf9;
+      font-size: 1.5rem;
     }
 
     .scroll-banner {
@@ -51,7 +34,7 @@
       white-space: nowrap;
       overflow: hidden;
       position: relative;
-      text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
+      text-shadow: 0 0 6px #0ff, 0 0 10px #0ff;
       border-top: 4px dotted #fff;
       border-bottom: 4px dotted #fff;
     }
@@ -59,7 +42,7 @@
     .scroll-text {
       display: inline-block;
       padding-left: 100%;
-      animation: scrollText 30s linear infinite;
+      animation: scrollText 25s linear infinite;
     }
 
     @keyframes scrollText {
@@ -70,27 +53,61 @@
         transform: translateX(-100%);
       }
     }
+
+    .section {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #222;
+      border-radius: 10px;
+    }
+
+    .section h2 {
+      border-left: 5px solid #e53935;
+      padding-left: 10px;
+      font-size: 1.2rem;
+      color: #e57373;
+    }
+
+    .section p {
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>ADSチーム対応状況</h1>
+    <h1>名鉄人身事故速報 - ADSチーム対応状況</h1>
   </header>
 
-  <!-- スクロールLEDバナー -->
+  <!-- LEDスクロールバナー -->
   <div class="scroll-banner">
     <div class="scroll-text">
-      📢 お客様にご案内します。6/27、電車の遅延によりチームメンバーの帰宅が遅れており、本日のサイト安全点検作業は延長となりました。お問い合わせ機能は2025年7月10日に追加予定です。
+      🚨【速報】中京競馬場前駅にて昨日人身事故発生。女性が死亡しダイヤに大幅な乱れが発生。関係者より「通勤遅延等でご迷惑をおかけしましたことを深くお詫び申し上げます。」／ADSチームより：本日6月27日の安全点検作業は延長対応中。7月10日に問い合わせ機能追加予定。
     </div>
   </div>
 
-  <div class="status-box">
-    <p><span class="status-label">📅 日付：</span>2025年6月27日（金）</p>
-    <p><span class="status-label">🔄 現在の状況：</span>ADSチームは通常通り作業を継続中です。</p>
-    <p><span class="status-label">👨‍💻 チームオーナーの作業：</span>ソースコードの保守・更新作業を行っています。</p>
-    <p><span class="status-label">⚠️ お知らせ：</span>6/27、電車の遅延によりチームメンバーの帰宅が遅れており、本日のサイト安全点検作業は延長となりました。不具合が発生している箇所について、誠に申し訳ございません。</p>
-    <p><span class="status-label">📌 今後の対応：</span>2025年7月10日にお問い合わせ機能を追加し、その日を新たな点検日といたします。</p>
+  <!-- 事故情報 -->
+  <div class="section">
+    <h2>🛑 人身事故について</h2>
+    <p>2025年6月26日、中京競馬場前駅にて発生した人身事故により、名鉄線のダイヤが大きく乱れました。亡くなられた女性のご冥福をお祈りするとともに、通勤・通学に影響を受けた皆様には深くお詫び申し上げます。</p>
+  </div>
+
+  <!-- ADSチーム対応状況 -->
+  <div class="section">
+    <h2>🛠️ ADSチーム対応状況</h2>
+    <p>現在、ADSチームでは本件に関連するシステム上の安全点検を実施中です。</p>
+    <ul>
+      <li>6月27日：点検作業延長中</li>
+      <li>7月10日：問い合わせ機能追加予定</li>
+      <li>不具合報告への対応継続中</li>
+    </ul>
+  </div>
+
+  <!-- 謝罪文 -->
+  <div class="section">
+    <h2>🙏 謝罪とご報告</h2>
+    <p>事故により多くの方々にご迷惑をおかけし、誠に申し訳ございません。関係者一同、再発防止に努めてまいります。</p>
   </div>
 
 </body>
