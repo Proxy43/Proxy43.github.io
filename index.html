@@ -2,65 +2,130 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>未来鉄道アナウンス</title>
+  <title>AI駅アナウンスシステム</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #101020;
-      color: #e0e0ff;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #0f0f1f;
+      color: #ffffff;
       text-align: center;
       padding: 50px;
     }
-    h1 {
+    #stationName {
       font-size: 2em;
-      margin-bottom: 20px;
+      margin: 20px 0;
+    }
+    #led {
+      font-family: monospace;
+      font-size: 1.4em;
+      color: #00ff88;
+      background-color: #000;
+      padding: 10px;
+      margin: 20px auto;
+      width: 80%;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #00ff88;
     }
     .announce {
-      font-size: 1.5em;
-      margin: 20px 0;
+      margin: 10px;
+      font-size: 1.2em;
     }
     button {
       font-size: 1em;
-      padding: 10px 20px;
       margin: 10px;
-      background-color: #303050;
+      padding: 10px 20px;
+      background-color: #222;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
     }
     button:hover {
-      background-color: #505070;
+      background-color: #444;
     }
   </style>
 </head>
 <body>
+
   <h1>🚆 メトロリンク05号線 - AIアナウンス</h1>
 
-  <div class="announce" id="station">現在の駅：ネオ秋葉原</div>
-  <div class="announce" id="jp">次は、ネオ秋葉原。左側のドアが開きます。</div>
-  <div class="announce" id="en">Next stop: Neo Akihabara. Doors will open on the left.</div>
+  <div id="stationName">現在の駅：--</div>
+  <div id="led">--</div>
 
-  <button onclick="speak('jp')">日本語で再生</button>
-  <button onclick="speak('en')">英語で再生</button>
+  <div class="announce" id="jp">---</div>
+  <div class="announce" id="en">---</div>
+
+  <button onclick="playAnnouncement()">▶ 次のアナウンス</button>
+  <button onclick="stopAnnouncement()">⏹ 中断</button>
 
   <script>
-    function speak(lang) {
-      let text = "";
-      let voiceLang = "";
+    const stations = [
+      {
+        name: "ネオ秋葉原",
+        led: "ネオ秋葉原　左側のドアが開きます",
+        jp: "次は、ネオ秋葉原。左側のドアが開きます。",
+        en: "Next stop: Neo Akihabara. Doors will open on the left."
+      },
+      {
+        name: "情報区セントラル",
+        led: "情報区セントラル　右側のドアが開きます",
+        jp: "次は、情報区セントラル。右側のドアが開きます。認証タグをご確認ください。",
+        en: "Next stop: Information District Central. Doors will open on the right. Please confirm your ID tag."
+      },
+      {
+        name: "クラウドブリッジ",
+        led: "クラウドブリッジ　左ドアです",
+        jp: "まもなく、クラウドブリッジ。左側のドアが開きます。",
+        en: "Approaching Cloud Bridge. Doors will open on the left."
+      },
+      {
+        name: "ミラージュ港",
+        led: "ミラージュ港　ドローン連携中",
+        jp: "次は、ミラージュ港。ドローンタクシーへの接続サービスをご利用いただけます。",
+        en: "Next stop: Mirage Port. Drone taxi service is available."
+      },
+      {
+        name: "終点 オーロラ・ステーション",
+        led: "終点：オーロラ・ステーション",
+        jp: "終点、オーロラ・ステーションです。お忘れ物のないようご注意ください。",
+        en: "Final stop: Aurora Station. Please do not forget your belongings."
+      }
+    ];
 
-      if (lang === "jp") {
-        text = document.getElementById("jp").textContent;
-        voiceLang = "ja-JP";
-      } else {
-        text = document.getElementById("en").textContent;
-        voiceLang = "en-US";
+    let currentIndex = 0;
+
+    function playAnnouncement() {
+      if (currentIndex >= stations.length) {
+        alert("全てのアナウンスが終了しました。");
+        return;
       }
 
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = voiceLang;
-      speechSynthesis.speak(utterance);
+      const s = stations[currentIndex];
+      document.getElementById("stationName").textContent = "現在の駅：" + s.name;
+      document.getElementById("led").textContent = s.led;
+      document.getElementById("jp").textContent = s.jp;
+      document.getElementById("en").textContent = s.en;
+
+      speak(s.jp, "ja-JP", () => {
+        speak(s.en, "en-US");
+      });
+
+      currentIndex++;
+    }
+
+    function stopAnnouncement() {
+      speechSynthesis.cancel();
+    }
+
+    function speak(text, lang, onEnd = null) {
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = lang;
+      if (onEnd) {
+        u.onend = onEnd;
+      }
+      speechSynthesis.speak(u);
     }
   </script>
+
 </body>
 </html>
