@@ -15,7 +15,24 @@
   h1 {
     margin-bottom: 1em;
   }
-  #stationName, #led, #category {
+  #announcementButtons {
+    margin-bottom: 25px;
+  }
+  #announcementButtons button {
+    background: #004466;
+    color: #ccffcc;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 8px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 6px #00ff88;
+  }
+  #announcementButtons button:hover {
+    background: #006688;
+  }
+  #category, #stationName, #led {
     font-family: monospace;
     background: #002033;
     padding: 15px;
@@ -43,7 +60,7 @@
     margin-left: auto;
     margin-right: auto;
   }
-  button {
+  button.control {
     background: #004466;
     color: #ccffcc;
     border: none;
@@ -54,10 +71,10 @@
     cursor: pointer;
     box-shadow: 0 0 6px #00ff88;
   }
-  button:hover:enabled {
+  button.control:hover:enabled {
     background: #006688;
   }
-  button:disabled {
+  button.control:disabled {
     background: #003344;
     cursor: default;
     box-shadow: none;
@@ -68,6 +85,12 @@
 
   <h1>🚉 島間電鉄 Robloxゲーム用 アナウンス</h1>
 
+  <div id="announcementButtons">
+    <button onclick="manualPlayCategory('normal')">▶ 通常アナウンス</button>
+    <button onclick="manualPlayCategory('delay')">▶ 遅延アナウンス</button>
+    <button onclick="manualPlayCategory('pass')">▶ 通過アナウンス</button>
+  </div>
+
   <div id="category">カテゴリ：--</div>
   <div id="stationName">現在の駅：--</div>
   <div id="led">LED表示：--</div>
@@ -75,9 +98,8 @@
   <div class="announce" id="jp">---</div>
   <div class="announce" id="en">---</div>
 
-  <button id="nextBtn" onclick="manualPlay()">▶ 次の通常アナウンス</button>
-  <button id="stopBtn" onclick="stopAnnouncement()" disabled>⏹ 中断</button>
-  <button id="startBtn" onclick="startAutoAnnouncements()">▶ 自動再生開始</button>
+  <button id="stopBtn" class="control" onclick="stopAnnouncement()" disabled>⏹ 中断</button>
+  <button id="startBtn" class="control" onclick="startAutoAnnouncements()">▶ 自動再生開始</button>
 
 <script>
   const announcements = {
@@ -138,15 +160,14 @@
     ]
   };
 
-  let normalIndex = 0;
-  let delayIndex = 0;
-  let passIndex = 0;
+  // 各種アナウンスのインデックス管理
+  const indices = { normal: 0, delay: 0, pass: 0 };
 
   let normalTimer = null;
   let delayTimer = null;
   let passTimer = null;
 
-  // 共通音声読み上げ関数
+  // 音声読み上げ関数
   function speak(text, lang, onEnd = null) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
@@ -154,7 +175,7 @@
     speechSynthesis.speak(utterance);
   }
 
-  // アナウンス再生（ループ）
+  // アナウンス再生関数（リストとインデックス指定）
   function playAnnouncementList(list, index) {
     if (index >= list.length) index = 0;
     const ann = list[index];
@@ -172,65 +193,18 @@
     return index + 1;
   }
 
+  // 手動で特定カテゴリーのアナウンスを再生
+  function manualPlayCategory(category) {
+    if (!(category in announcements)) return;
+    indices[category] = playAnnouncementList(announcements[category], indices[category]);
+  }
+
   // 自動アナウンス開始
   function startAutoAnnouncements() {
     if (normalTimer || delayTimer || passTimer) return; // すでに動作中は無視
 
-    // ボタン制御
     document.getElementById("startBtn").disabled = true;
     document.getElementById("stopBtn").disabled = false;
 
-    // すぐ一回再生
-    normalIndex = playAnnouncementList(announcements.normal, normalIndex);
-    delayIndex = playAnnouncementList(announcements.delay, delayIndex);
-    passIndex = playAnnouncementList(announcements.pass, passIndex);
-
-    // タイマー開始
-    normalTimer = setInterval(() => {
-      normalIndex = playAnnouncementList(announcements.normal, normalIndex);
-    }, 120000); // 2分
-
-    delayTimer = setInterval(() => {
-      delayIndex = playAnnouncementList(announcements.delay, delayIndex);
-    }, 300000); // 5分
-
-    passTimer = setInterval(() => {
-      passIndex = playAnnouncementList(announcements.pass, passIndex);
-    }, 180000); // 3分
-  }
-
-  // 中断処理
-  function stopAnnouncement() {
-    speechSynthesis.cancel();
-
-    if (normalTimer) {
-      clearInterval(normalTimer);
-      normalTimer = null;
-    }
-    if (delayTimer) {
-      clearInterval(delayTimer);
-      delayTimer = null;
-    }
-    if (passTimer) {
-      clearInterval(passTimer);
-      passTimer = null;
-    }
-
-    document.getElementById("startBtn").disabled = false;
-    document.getElementById("stopBtn").disabled = true;
-  }
-
-  // 手動通常アナウンス再生
-  function manualPlay() {
-    normalIndex = playAnnouncementList(announcements.normal, normalIndex);
-  }
-
-  // 初期状態ボタン制御
-  window.onload = () => {
-    document.getElementById("startBtn").disabled = false;
-    document.getElementById("stopBtn").disabled = true;
-  };
-</script>
-
-</body>
-</html>
+    // 即時一回再生
+    indices.normal = playAnnouncementList(announcements.normal, indices
