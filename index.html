@@ -207,4 +207,48 @@
     document.getElementById("stopBtn").disabled = false;
 
     // 即時一回再生
-    indices.normal = playAnnouncementList(announcements.normal, indices
+    indices.normal = playAnnouncementList(announcements.normal, indices.normal);
+    indices.delay = playAnnouncementList(announcements.delay, indices.delay);
+    indices.pass = playAnnouncementList(announcements.pass, indices.pass);
+
+    // 通常アナウンスは2分（120,000ms）ごとに
+    normalTimer = setInterval(() => {
+      indices.normal = playAnnouncementList(announcements.normal, indices.normal);
+    }, 120000);
+
+    // 遅延アナウンスは5分（300,000ms）ごとに
+    delayTimer = setInterval(() => {
+      indices.delay = playAnnouncementList(announcements.delay, indices.delay);
+    }, 300000);
+
+    // 通過アナウンスも5分（300,000ms）ごとに
+    passTimer = setInterval(() => {
+      indices.pass = playAnnouncementList(announcements.pass, indices.pass);
+    }, 300000);
+  }
+
+  // アナウンス停止
+  function stopAnnouncement() {
+    speechSynthesis.cancel();
+
+    if (normalTimer) clearInterval(normalTimer);
+    if (delayTimer) clearInterval(delayTimer);
+    if (passTimer) clearInterval(passTimer);
+
+    normalTimer = null;
+    delayTimer = null;
+    passTimer = null;
+
+    document.getElementById("startBtn").disabled = false;
+    document.getElementById("stopBtn").disabled = true;
+
+    document.getElementById("category").textContent = "カテゴリ：--";
+    document.getElementById("stationName").textContent = "現在の駅：--";
+    document.getElementById("led").textContent = "LED表示：--";
+    document.getElementById("jp").textContent = "---";
+    document.getElementById("en").textContent = "---";
+  }
+</script>
+
+</body>
+</html>
