@@ -1,121 +1,108 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>名鉄人身事故情報【速報】</title>
+  <title>名鉄 人身事故速報</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Meiryo', sans-serif;
       background-color: #111;
+      font-family: 'Meiryo', sans-serif;
       color: #fff;
+    }
+
+    header {
+      background-color: #c62828;
+      padding: 20px;
       text-align: center;
     }
-    header {
-      background-color: #b71c1c;
-      padding: 20px;
-    }
+
     header h1 {
       margin: 0;
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: #fff;
     }
+
     .led-banner {
       background-color: #000;
       color: #0f0;
       font-family: 'Courier New', monospace;
-      font-size: 1rem;
-      padding: 10px;
+      font-size: 1.1rem;
       white-space: nowrap;
       overflow: hidden;
       position: relative;
+      height: 40px;
       text-shadow: 0 0 5px #0f0;
+      border-top: 4px solid #fff;
+      border-bottom: 4px solid #fff;
     }
+
     .led-text {
       position: absolute;
-      white-space: nowrap;
-      animation: scroll 25s linear infinite;
+      animation: scroll 20s linear infinite;
     }
+
     @keyframes scroll {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
-    .led-display {
-      font-family: 'Courier New', monospace;
-      font-weight: bold;
-      font-size: 2.5rem;
-      letter-spacing: 10px;
-      background: #000;
-      color: #0ff;
-      padding: 20px 0;
-      text-shadow:
-        0 0 5px #0ff,
-        0 0 10px #0ff,
-        0 0 15px #0ff,
-        0 0 20px #0ff;
-      border-top: 8px dotted #fff;
-      border-bottom: 8px dotted #fff;
-    }
+
     .content {
-      padding: 20px;
-      text-align: left;
       max-width: 800px;
       margin: auto;
+      padding: 20px;
     }
+
     .content h2 {
-      color: #ffccbc;
-      border-bottom: 1px solid #ff8a65;
+      border-bottom: 1px solid #e57373;
       padding-bottom: 5px;
+      color: #ffccbc;
     }
+
     .content p, .content ul {
       line-height: 1.6;
+      font-size: 1rem;
     }
+
     .footer {
       background-color: #263238;
-      color: #ccc;
+      text-align: center;
       padding: 10px;
+      color: #ccc;
       font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>名鉄人身事故速報サイト</h1>
-  </header>
 
-  <div class="led-display">
-    <span style="color:#f48fb1; text-shadow:0 0 5px #f48fb1;">L</span>
-    <span style="color:#ffff00; text-shadow:0 0 5px #ffff00;">E</span>
-    <span style="color:#00e5ff; text-shadow:0 0 5px #00e5ff;">D</span>
-  </div>
+  <header>
+    <h1>名鉄 人身事故速報</h1>
+  </header>
 
   <div class="led-banner">
     <div class="led-text">
-      🚨【6月27日現在】6月26日 中京競馬場前駅で発生した人身事故により名鉄線に大幅な遅延が発生。ご迷惑をおかけしております。関係者より謝罪の言葉が届いております。
+      【速報】2025年6月26日、中京競馬場前駅にて人身事故が発生。名鉄全線に遅延が発生しております。関係者より深くお詫び申し上げます。
     </div>
   </div>
 
   <div class="content">
-    <h2>📍 概要</h2>
-    <p>2025年6月26日（木）午後、中京競馬場前駅にて人身事故が発生。名鉄線全体に影響が広がり、通勤・通学に支障が出ました。</p>
+    <h2>📍 事故発生の概要</h2>
+    <p>2025年6月26日（木）午後5時頃、中京競馬場前駅にて人身事故が発生しました。これにより名鉄名古屋本線などで大幅な遅延・一部運休が発生しています。</p>
 
     <h2>🧾 関係者からの謝罪</h2>
-    <p>「このたびは多くの方々にご迷惑をおかけし、誠に申し訳ございません。」（関係者より）</p>
+    <p>「このたびは多くの方にご迷惑をおかけし、誠に申し訳ございません。」（遺族関係者より）</p>
 
     <h2>📅 今後の対応</h2>
     <ul>
-      <li>6月27日：サイト安全点検の延長対応中</li>
-      <li>7月10日：問い合わせ機能を追加予定</li>
+      <li>6月27日：ADSチームによる復旧とサイト点検作業中</li>
+      <li>7月10日：お問い合わせ機能の追加予定</li>
     </ul>
   </div>
 
   <div class="footer">
-    &copy; 2025 ADSチーム｜情報は6月27日時点のものです。
+    &copy; 2025 名鉄事故速報チーム ｜ 最終更新日：2025年6月27日
   </div>
+
 </body>
 </html>
