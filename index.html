@@ -45,6 +45,22 @@
         transform: translateX(-100%);
       }
     }
+    .led-display {
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      font-size: 2.5rem;
+      letter-spacing: 10px;
+      background: #000;
+      color: #0ff;
+      padding: 20px 0;
+      text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 15px #0ff,
+        0 0 20px #0ff;
+      border-top: 8px dotted #fff;
+      border-bottom: 8px dotted #fff;
+    }
     .content {
       padding: 20px;
       text-align: left;
@@ -71,6 +87,12 @@
   <header>
     <h1>名鉄人身事故速報サイト</h1>
   </header>
+
+  <div class="led-display">
+    <span style="color:#f48fb1; text-shadow:0 0 5px #f48fb1;">L</span>
+    <span style="color:#ffff00; text-shadow:0 0 5px #ffff00;">E</span>
+    <span style="color:#00e5ff; text-shadow:0 0 5px #00e5ff;">D</span>
+  </div>
 
   <div class="led-banner">
     <div class="led-text">
